@@ -13,27 +13,27 @@ export default function App() {
   const [players, setPlayers] = useState([]);
 
   useEffect(() => {
-    socket.on("player-joined", (playerId) => {
-      setPlayers((prev) => [...prev, playerId]);
+    socket.on("players", (playerList) => {
+      setPlayers(playerList);
     });
 
-    socket.on("start-game", () => {
+    socket.on("startGame", () => {
       setGameStarted(true);
       startSound.play();
     });
 
     return () => {
-      socket.off("player-joined");
-      socket.off("start-game");
+      socket.off("players");
+      socket.off("startGame");
     };
   }, []);
 
   const handleStart = () => {
-    socket.emit("start-game");
+    socket.emit("startGame");
   };
 
   return (
-    <div style={{ textAlign: "center" }}>
+    <div style={{ textAlign: "center", backgroundColor: "#000", color: "#fff", height: "100vh" }}>
       {!gameStarted ? (
         <Home players={players} handleStart={handleStart} />
       ) : (
@@ -42,3 +42,4 @@ export default function App() {
     </div>
   );
 }
+// import React, { useState, useEffect } from "react";

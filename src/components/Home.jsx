@@ -5,7 +5,8 @@ const Home = ({ players, handleStart }) => {
   const localIP = "192.168.1.34"; // Change this when deployed
   const vitePort = "5173";
 
-  const qrLink = window.location.href;
+  const qrLink = "https://hackfront-theta.vercel.app/";
+
 
 
   return (
